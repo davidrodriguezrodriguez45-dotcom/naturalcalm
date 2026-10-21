@@ -1,216 +1,301 @@
-
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NaturalCalm - Jabón Artesanal</title>
 
-    <title>NaturalCalm | Jabón artesanal</title>
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="estilos.css">
+  <!-- Iconos y QR -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- ESTILOS DIRECTOS (Garantiza que el celular SIEMPRE muestre los colores) -->
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f6f5f0;
+      color: #2b332c;
+      line-height: 1.6;
+    }
+    .font-serif-title { font-family: 'Playfair Display', serif; }
+
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(6, 78, 59, 0.1);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-container { display: flex; align-items: center; gap: 12px; }
+    .logo-container img {
+      width: 48px; height: 48px; object-fit: contain;
+      border-radius: 50%; background: #ecfdf5; padding: 4px; border: 1px solid #a7f3d0;
+    }
+    .logo-container span { font-size: 1.25rem; font-weight: 700; color: #022c22; }
+
+    nav { display: flex; gap: 24px; font-size: 0.875rem; font-weight: 500; }
+    nav a { color: #064e3b; text-decoration: none; transition: 0.2s; }
+    nav a:hover { color: #059669; }
+
+    .hero {
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #065f46 100%);
+      color: white; padding: 48px 20px; text-align: center;
+    }
+    .hero-content {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center;
+    }
+    @media (min-width: 768px) {
+      .hero { text-align: left; padding: 80px 20px; }
+      .hero-content { grid-template-columns: 1fr 1fr; }
+    }
+
+    .badge {
+      display: inline-block; background: rgba(6, 78, 59, 0.8); color: #a7f3d0;
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      padding: 6px 16px; border-radius: 999px; border: 1px solid #047857; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+    .hero h1 span { font-style: italic; color: #6ee7b7; }
+    .hero p { color: #d1fae5; font-size: 0.95rem; margin-bottom: 24px; }
+
+    .btn-container { display: flex; flex-direction: column; gap: 12px; }
+    @media (min-width: 640px) { .btn-container { flex-direction: row; } }
+    .btn-wa {
+      background: #fbbf24; color: #022c22; font-weight: 700; padding: 12px 24px;
+      border-radius: 16px; text-decoration: none; font-size: 0.875rem; display: inline-flex;
+      align-items: center; justify-content: center; gap: 8px; shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .btn-wa:hover { background: #fcd34d; }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1); color: white; font-weight: 500; padding: 12px 24px;
+      border-radius: 16px; text-decoration: none; font-size: 0.875rem; border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
+      padding: 32px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center;
+    }
+    .hero-card-icon {
+      width: 80px; height: 80px; background: #d1fae5; color: #064e3b; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+    }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 48px 16px; display: flex; flex-direction: column; gap: 48px; }
+
+    .section-card {
+      background: white; padding: 24px; border-radius: 24px;
+      border: 1px solid rgba(6, 78, 59, 0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    @media (min-width: 768px) { .section-card { padding: 32px; } }
+    .section-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 1px; }
+    .section-title { font-size: 1.5rem; font-weight: 700; color: #022c22; margin: 4px 0 12px; }
+    @media (min-width: 768px) { .section-title { font-size: 1.875rem; } }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    .ingredient-card { padding: 24px; border-radius: 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .ing-vanilla { background: rgba(254, 243, 199, 0.6); border: 1px solid rgba(252, 211, 77, 0.6); }
+    .ing-linaza { background: rgba(209, 250, 229, 0.6); border: 1px solid rgba(110, 231, 183, 0.6); }
+    .ing-icon { padding: 12px; border-radius: 16px; flex-shrink: 0; }
+
+    .grid-team { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+    @media (min-width: 640px) { .grid-team { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 768px) { .grid-team { grid-template-columns: repeat(4, 1fr); } }
+
+    .team-card {
+      padding: 16px; border-radius: 16px; background: rgba(236, 253, 245, 0.5);
+      border: 1px solid #d1fae5; text-align: center;
+    }
+    .avatar {
+      width: 48px; height: 48px; background: #064e3b; color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 8px;
+    }
+
+    .qr-section {
+      background: linear-gradient(to right, #064e3b, #022c22); color: white;
+      padding: 32px 24px; border-radius: 24px; text-align: center;
+    }
+    .qr-container {
+      background: white; padding: 16px; border-radius: 16px; display: inline-block; margin: 16px 0;
+    }
+
+    footer {
+      background: #022c22; color: #a7f3d0; text-align: center; padding: 24px; font-size: 0.75rem; border-top: 1px solid #064e3b;
+    }
+  </style>
 </head>
-
 <body>
 
-    <header>
-        <a href="#inicio" class="logo">
-    <img src="img/Logo NaturalCalm con Hoja Verde.png" alt="Logo de NaturalCalm">
-        </a>
-        
-
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#nosotros">Nuestro jabón</a>
-            <a href="#ingredientes">Ingredientes</a>
-            <a href="#uso">Modo de uso</a>
-        </nav>
-    </header>
-
-    <main>
-        
-<section id="inicio" class="portada">
-
-    <div class="portada-contenido">
-        <div class="sello">
-            <span>✳</span>
-            CUIDADO NATURAL · ESENCIA ARTESANAL
-        </div>
-
-        <h1>
-            Tu momento de
-            <span>naturaleza.</span>
-        </h1>
-
-        <p class="descripcion">
-            Descubre una nueva forma de disfrutar
-            tu rutina de cuidado con NaturalCalm,
-            inspirado en la vainilla y la linaza.
-        </p>
-
-        <div class="portada-botones">
-            <a href="#nosotros" class="boton">
-                Descubrir el jabón <span>↗</span>
-            </a>
-
-            <a href="#ingredientes" class="enlace-secundario">
-                Conocer los ingredientes
-            </a>
-        </div>
-
-        <div class="portada-firma">
-            <span class="linea"></span>
-            <span>LA NATURALEZA CUIDA TU PIEL</span>
-        </div>
+  <!-- NAVEGACIÓN Y LOGO -->
+  <header>
+    <div class="logo-container">
+      <img src="Logo NaturalCalm con Hoja Verde.png" alt="Logo NaturalCalm" onerror="this.src='https://via.placeholder.com/50?text=NC'">
+      <span class="font-serif-title">NaturalCalm</span>
     </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#sabon">Nuestro Jabón</a>
+      <a href="#ingredientes">Ingredientes</a>
+      <a href="#equipo">Equipo</a>
+    </nav>
+  </header>
 
-    <div class="portada-decoracion" aria-hidden="true">
-        <div class="aro aro-exterior"></div>
-        <div class="aro aro-interior"></div>
+  <!-- BANNER PRINCIPAL / HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <div>
+        <span class="badge">Cuidado Natural · Esencia Artesanal</span>
+        <h1 class="font-serif-title">Tu momento de <br><span>naturaleza.</span></h1>
+        <p>Descubre una nueva forma de disfrutar tu rutina de cuidado con NaturalCalm, inspirado en la vainilla y la linaza.</p>
+        <div class="btn-container">
+          <a href="https://wa.me/573224236327?text=Hola,%20quisiera%20mas%20informacion%20sobre%20el%20jabon%20NaturalCalm" target="_blank" class="btn-wa">
+            <i data-lucide="message-circle" style="width:16px; height:16px;"></i> Pedir por WhatsApp
+          </a>
+          <a href="#ingredientes" class="btn-secondary">Ver Ingredientes</a>
+        </div>
+      </div>
 
-        <div class="emblema">
-            <span class="emblema-hoja">❧</span>
-            <span class="emblema-nombre">Natural</span>
-            <span class="emblema-nombre emblema-segundo">Calm</span>
-            <span class="emblema-linea"></span>
-            <span class="emblema-texto">BOTÁNICA · BIENESTAR</span>
+      <div style="display: flex; justify-content: center;">
+        <div class="hero-card">
+          <div class="hero-card-icon">
+            <i data-lucide="sparkles" style="width:40px; height:40px;"></i>
+          </div>
+          <h2 class="font-serif-title" style="font-size: 1.5rem;">NaturalCalm</h2>
+          <p style="font-size: 0.75rem; color: #a7f3d0; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">Botánica & Bienestar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+
+    <!-- ¿Para qué fue creado? -->
+    <section id="sabon" class="section-card">
+      <span class="section-tag">Nuestra Esencia</span>
+      <h2 class="section-title font-serif-title">¿Para qué fue creado?</h2>
+      <p style="color: #374151; font-size: 0.95rem;">
+        NaturalCalm fue creado como una propuesta de jabón artesanal para la limpieza y el cuidado cotidiano de la piel, inspirado en ingredientes naturales como la vainilla y la linaza que brindan hidratación y relajación en cada uso.
+      </p>
+    </section>
+
+    <!-- Ingredientes -->
+    <section id="ingredientes">
+      <div style="margin-bottom: 24px;">
+        <span class="section-tag">Lo que nos inspira</span>
+        <h2 class="section-title font-serif-title">Nuestros Ingredientes</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="ingredient-card ing-vanilla">
+          <div class="ing-icon" style="background: #fef3c7; color: #78350f;">
+            <i data-lucide="flower-2" style="width:24px; height:24px;"></i>
+          </div>
+          <div>
+            <h3 style="font-weight: 700; color: #111827;">Vainilla</h3>
+            <p style="font-size: 0.875rem; color: #4b5563; margin-top: 4px;">Aporta un aroma dulce y agradable a la experiencia del jabón, ayudando a calmar los sentidos y reducir el estrés.</p>
+          </div>
         </div>
 
-        <div class="flotante flotante-arriba">
-            <span>✳</span>
-            Inspiración natural
+        <div class="ingredient-card ing-linaza">
+          <div class="ing-icon" style="background: #d1fae5; color: #064e3b;">
+            <i data-lucide="leaf" style="width:24px; height:24px;"></i>
+          </div>
+          <div>
+            <h3 style="font-weight: 700; color: #111827;">Linaza</h3>
+            <p style="font-size: 0.875rem; color: #4b5563; margin-top: 4px;">Es un ingrediente de origen vegetal que nutre la piel, ofreciendo una suave exfoliación natural y ácidos grasos esenciales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="section-card">
+      <div>
+        <span class="section-tag">Conoce a nuestro equipo</span>
+        <h2 class="section-title font-serif-title">Nuestro Equipo</h2>
+        <p style="font-size: 0.875rem; color: #6b7280;">Somos cuatro integrantes trabajando juntos para crear nuestra propuesta de jabón artesanal NaturalCalm.</p>
+      </div>
+
+      <div class="grid-team">
+        <div class="team-card">
+          <div class="avatar">N</div>
+          <h4 style="font-weight: 700; font-size: 0.875rem; color: #111827;">Nicoll Toro</h4>
+          <p style="font-size: 0.75rem; color: #047857; font-weight: 500;">Integrante del proyecto</p>
         </div>
 
-        <div class="flotante flotante-abajo">
-            VAINILLA <span>•</span> LINAZA
+        <div class="team-card">
+          <div class="avatar">D</div>
+          <h4 style="font-weight: 700; font-size: 0.875rem; color: #111827;">Danna Alexandra Rodriguez</h4>
+          <p style="font-size: 0.75rem; color: #047857; font-weight: 500;">Integrante del proyecto</p>
         </div>
-    </div>
 
-    <div class="portada-numero">N.º 01 — NATURALCALM</div>
+        <div class="team-card">
+          <div class="avatar">J</div>
+          <h4 style="font-weight: 700; font-size: 0.875rem; color: #111827;">Juan David Rodriguez</h4>
+          <p style="font-size: 0.75rem; color: #047857; font-weight: 500;">Integrante del proyecto</p>
+        </div>
 
-</section>
+        <div class="team-card">
+          <div class="avatar">J</div>
+          <h4 style="font-weight: 700; font-size: 0.875rem; color: #111827;">Juan Garzon Pedroza</h4>
+          <p style="font-size: 0.75rem; color: #047857; font-weight: 500;">Integrante del proyecto</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- QR Dinámico -->
+    <section class="qr-section">
+      <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6ee7b7;">Descubre NaturalCalm</span>
+      <h2 class="font-serif-title" style="font-size: 1.5rem; margin-top: 4px;">Escanea y conoce más</h2>
+      <p style="font-size: 0.875rem; color: #d1fae5; max-width: 400px; margin: 8px auto 0;">
+        Usa tu celular para escanear este código QR e ingresar directamente a nuestra página web oficial.
+      </p>
 
-        <section id="nosotros" class="seccion">
-            <p class="etiqueta">NUESTRA ESENCIA</p>
+      <div class="qr-container">
+        <div id="qrcode"></div>
+      </div>
 
-            <h2>¿Para qué fue creado?</h2>
+      <p id="url-label" style="font-size: 10px; color: #6ee7b7; font-family: monospace; word-break: break-all; max-width: 300px; margin: 0 auto;"></p>
+    </section>
 
-            <p>
-                NaturalCalm fue creado como una propuesta
-                de jabón artesanal para la limpieza y el
-                cuidado cotidiano de la piel, inspirado
-                en ingredientes como la vainilla y la linaza.
-            </p>
-        </section>
+  </main>
 
-        <section id="ingredientes" class="seccion">
-            <p class="etiqueta">LO QUE NOS INSPIRA</p>
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>© 2026 NaturalCalm — Proyecto de Jabón Artesanal</p>
+    <p style="color: #34d399; margin-top: 4px;">La naturaleza cuida tu piel.</p>
+  </footer>
 
-            <h2>Nuestros ingredientes</h2>
+  <!-- SCRIPTS -->
+  <script>
+    lucide.createIcons();
 
-            <div class="tarjetas">
-                <article class="tarjeta">
-                    <span class="icono">✿</span>
-                    <h3>Vainilla</h3>
-                    <p>
-                        Aporta un aroma dulce y agradable
-                        a la experiencia del jabón.
-                    </p>
-                </article>
+    const currentUrl = window.location.href;
+    document.getElementById('url-label').innerText = currentUrl;
 
-                <article class="tarjeta">
-                    <span class="icono">❋</span>
-                    <h3>Linaza</h3>
-                    <p>
-                        Es un ingrediente de origen vegetal
-                        que inspira nuestra propuesta artesanal.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <section id="uso" class="seccion">
-            <p class="etiqueta">CUIDADO DIARIO</p>
-
-            <h2>Modo de uso</h2>
-
-            <p>
-                Humedece la piel, aplica el jabón suavemente
-                y enjuaga con abundante agua. Evita el contacto
-                con los ojos y suspende su uso si causa irritación.
-            </p>
-        </section>
-
-        ```html
-!-- APARTADO DE INTEGRANTES --!
-<section id="equipo" class="seccion equipo">
-
-    <div <class="equipo-encabezado">
-        <span class="etiqueta">CONOCE A NUESTRO EQUIPO</span>
-
-        <h2>Nuestro equipo</h2>
-
-        <p>
-            Somos cuatro integrantes trabajando juntos
-            para crear nuestra propuesta de jabón artesanal NaturalCalm.
-        </p>
-    </div>
-
-    <div class="equipo-tarjetas">
-
-        <article class="tarjeta-integrante">
-            <div class="avatar-integrante">N</div>
-            <h3>Nicoll Toro</h3>
-            <p>Integrante del proyecto</p>
-        </article>
-
-        <article class="tarjeta-integrante">
-            <div class="avatar-integrante">D</div>
-            <h3>Danna Alexandra Rodriguez</h3>
-            <p>Integrante del proyecto</p>
-        </article>
-
-        <article class="tarjeta-integrante">
-            <div class="avatar-integrante">J</div>
-            <h3>Juan David Rodriguez</h3>
-            <p>Integrante del proyecto</p>
-        </article>
-
-        <article class="tarjeta-integrante">
-            <div class="avatar-integrante">J</div>
-            <h3>Juan Garzon Pedroza</h3>
-            <p>Integrante del proyecto</p>
-        </article>
-
-    </div>
-
-</section>
-```
-
-
-        <section id="qr" class="seccion">
-            <p class="etiqueta">DESCUBRE NATURALCALM</p>
-
-            <h2>Escanea y conoce más</h2>
-
-            <p>
-                Aquí colocaremos el código QR que llevará
-                a las personas directamente a nuestra página.
-            </p>
-
-            <div id="codigo-qr">
-                El código QR se agregará más adelante.
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>NaturalCalm</p>
-        <p>La naturaleza cuida tu piel.</p>
-        <p>Proyecto de jabón artesanal</p>
-    </footer>
-
-    <script src="script.js"></script>
-
+    new QRCode(document.getElementById("qrcode"), {
+      text: currentUrl,
+      width: 140,
+      height: 140,
+      colorDark: "#064e3b",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
 </body>
 </html>
