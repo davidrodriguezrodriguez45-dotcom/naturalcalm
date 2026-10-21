@@ -44,7 +44,17 @@
     }
     .logo-container span { font-size: 1.25rem; font-weight: 700; color: #022c22; }
 
-    nav { display: flex; gap: 24px; font-size: 0.875rem; font-weight: 500; }
+   nav { 
+      display: flex; 
+      gap: 8px; 
+      font-size: 0.75rem; 
+      font-weight: 600; 
+      flex-wrap: wrap; 
+    }
+    nav a { 
+      padding: 4px 6px; 
+      white-space: nowrap; 
+    }
     nav a { color: #064e3b; text-decoration: none; transition: 0.2s; }
     nav a:hover { color: #059669; }
 
@@ -143,7 +153,7 @@
   <!-- NAVEGACIÓN Y LOGO -->
   <header>
     <div class="logo-container">
-      <img src="Logo NaturalCalm con Hoja Verde.png" alt="Logo NaturalCalm" onerror="this.src='https://via.placeholder.com/50?text=NC'">
+      <img src="Logo NaturalCalm" alt="Logo NaturalCalm" onerror="this.src='https://via.placeholder.com/50?text=NC'">
       <span class="font-serif-title">NaturalCalm</span>
     </div>
     <nav>
@@ -171,9 +181,9 @@
 
       <div style="display: flex; justify-content: center;">
         <div class="hero-card">
-          <div class="hero-card-icon">
-            <i data-lucide="sparkles" style="width:40px; height:40px;"></i>
-          </div>
+          <div class="hero-card-icon" style="background: transparent;">
+  <img src="Logo NaturalCalm con Hoja Verde.png" alt="Logo NaturalCalm" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+</div>
           <h2 class="font-serif-title" style="font-size: 1.5rem;">NaturalCalm</h2>
           <p style="font-size: 0.75rem; color: #a7f3d0; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">Botánica & Bienestar</p>
         </div>
@@ -257,23 +267,6 @@
         </div>
       </div>
     </section>
-
-    <!-- QR Dinámico -->
-    <section class="qr-section">
-      <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6ee7b7;">Descubre NaturalCalm</span>
-      <h2 class="font-serif-title" style="font-size: 1.5rem; margin-top: 4px;">Escanea y conoce más</h2>
-      <p style="font-size: 0.875rem; color: #d1fae5; max-width: 400px; margin: 8px auto 0;">
-        Usa tu celular para escanear este código QR e ingresar directamente a nuestra página web oficial.
-      </p>
-
-      <div class="qr-container">
-        <div id="qrcode"></div>
-      </div>
-
-      <p id="url-label" style="font-size: 10px; color: #6ee7b7; font-family: monospace; word-break: break-all; max-width: 300px; margin: 0 auto;"></p>
-    </section>
-
-  </main>
 
   <!-- PIE DE PÁGINA -->
   <footer>
