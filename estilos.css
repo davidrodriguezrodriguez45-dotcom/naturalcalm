@@ -559,3 +559,205 @@ footer {
   transform: translateY(0);
 }
 
+/* Contenedor que activa la perspectiva tridimensional */
+.tarjeta-jabon-3d {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+/* Estilo base de la foto del jabón con sombra flotante */
+.imagen-jabon-3d {
+  width: 240px;
+  height: auto;
+  border-radius: 16px;
+  filter: drop-shadow(0px 15px 12px rgba(0, 0, 0, 0.25));
+  transition: transform 0.4s ease, filter 0.4s ease;
+  cursor: pointer;
+}
+
+/* Efecto 3D interactivo cuando interactúan con el jabón */
+/* Contenedor del Visor 3D */
+.contenedor-jabon-3d {
+  width: 100%;
+  max-width: 450px;
+  height: 380px;
+  margin: 25px auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+#canvas-jabon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#canvas-jabon:active {
+  cursor: grabbing;
+}
+
+.instruccion-3d {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.contenedor-jabon-centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  perspective: 1000px;
+  margin: 20px auto;
+  width: 100%;
+}
+
+#jabonReal3D {
+  width: 260px;
+  height: auto;
+  border-radius: 16px;
+  cursor: grab;
+  touch-action: none;
+  transition: transform 0.1s ease-out, filter 0.1s ease-out;
+  filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.3));
+}
+
+#jabonReal3D:active {
+  cursor: grabbing;
+}
+
+.visor-jabon-wrapper {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px; /* Crea la profundidad real en 3D */
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#jabon3D {
+  width: 280px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 18px;
+  cursor: grab;
+  touch-action: none;
+  transform-style: preserve-3d;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+  display: block;
+}
+
+#jabon3D:active {
+  cursor: grabbing;
+}
+
+.jabon-3d-real-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  padding: 40px 0;
+}
+
+.jabon-card-inner {
+  width: 270px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 20px;
+  /* Simula el grosor y cuerpo físico del jabón alrededor de tu foto */
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  padding: 12px; 
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), 
+              inset 0 3px 6px rgba(255, 255, 255, 0.5);
+  transform-style: preserve-3d;
+  cursor: grab;
+  touch-action: none;
+  transition: transform 0.05s ease-out;
+  margin: 0 auto;
+}
+
+.jabon-card-inner img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  pointer-events: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.jabon-card-inner:active {
+  cursor: grabbing;
+}
+
+.visor-jabon-centrado {
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  margin: 0 auto;
+}
+
+#jabonReal3D {
+  width: 280px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 16px;
+  cursor: grab;
+  touch-action: none;
+  display: block;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+}
+
+#jabonReal3D:active {
+  cursor: grabbing;
+}
+
+.contenedor-centrado-jabon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 400px;
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+#jabonReal3D {
+  width: 280px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 16px;
+  cursor: grab;
+  touch-action: none;
+  display: block;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+}
+
+#jabonReal3D:active {
+  cursor: grabbing;
+}
+

@@ -152,7 +152,6 @@ function enviarPedidoWhatsApp() {
   var totalFormateado = "$" + total.toLocaleString("es-CO") + " COP";
   var costoEnvioFormateado = "$" + costoEnvio.toLocaleString("es-CO") + " COP";
 
-  // Reemplaza los ceros "3000000000" por tu número de WhatsApp real con el indicativo del país (Ej: 57 para Colombia)
   var telefono = "573224236327"; 
 
   // Mensaje adaptado para negocios
@@ -164,4 +163,54 @@ function enviarPedidoWhatsApp() {
 
   // Abrir WhatsApp con el mensaje codificado
   window.open("https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje), '_blank');
+}
+const jabonImg = document.getElementById('jabonReal3D');
+
+if (jabonImg) {
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let rotX = 0, rotY = 0;
+
+  const dragStart = (e) => {
+    isDragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+    startY = e.touches ? e.touches[0].clientY : e.clientY;
+  };
+
+  const dragMove = (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+
+    rotY += deltaX * 0.4;
+    rotX -= deltaY * 0.4;
+
+    // Limitar los ángulos de giro
+    rotX = Math.max(-35, Math.min(35, rotX));
+    rotY = Math.max(-35, Math.min(35, rotY));
+
+    // Mueve y gira directamente la foto de tu jabón con su sombra
+    jabonImg.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+    jabonImg.style.boxShadow = `${-rotY * 0.5}px ${20 + rotX * 0.4}px 35px rgba(0,0,0,0.35)`;
+
+    startX = currentX;
+    startY = currentY;
+  };
+
+  const dragEnd = () => {
+    isDragging = false;
+  };
+
+  // Eventos de Mouse (Computador)
+  jabonImg.addEventListener('mousedown', dragStart);
+  window.addEventListener('mousemove', dragMove);
+  window.addEventListener('mouseup', dragEnd);
+
+  // Eventos Táctiles (Celular)
+  jabonImg.addEventListener('touchstart', dragStart, { passive: true });
+  window.addEventListener('touchmove', dragMove, { passive: true });
+  window.addEventListener('touchend', dragEnd);
 }
